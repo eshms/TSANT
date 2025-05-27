@@ -1,14 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.geometry.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
+
+<AnchorPane fx:id="rootPane" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.example.tsant.Controller.SimulationController" prefWidth="800" prefHeight="800">
+
+    <!-- Trafik ışıkları (Rectangle) ve süre göstergeleri (Label) -->
+
+    <!-- Kuzey ışığı -->
+    <Rectangle fx:id="northLight" width="30" height="60" layoutX="385" layoutY="150" stroke="black" strokeWidth="2"/>
+    <Label fx:id="northTimer" layoutX="385" layoutY="215" textFill="black" style="-fx-font-weight: bold;"/>
+
+    <!-- Güney ışığı -->
+    <Rectangle fx:id="southLight" width="30" height="60" layoutX="385" layoutY="550" stroke="black" strokeWidth="2"/>
+    <Label fx:id="southTimer" layoutX="385" layoutY="615" textFill="black" style="-fx-font-weight: bold;"/>
+
+    <!-- Doğu ışığı -->
+    <Rectangle fx:id="eastLight" width="60" height="30" layoutX="550" layoutY="385" stroke="black" strokeWidth="2"/>
+    <Label fx:id="eastTimer" layoutX="615" layoutY="385" textFill="black" style="-fx-font-weight: bold;"/>
+
+    <!-- Batı ışığı -->
+    <Rectangle fx:id="westLight" width="60" height="30" layoutX="150" layoutY="385" stroke="black" strokeWidth="2"/>
+    <Label fx:id="westTimer" layoutX="85" layoutY="385" textFill="black" style="-fx-font-weight: bold;"/>
+
+    <!-- Start butonu -->
+    <Button fx:id="startButton" layoutX="10" layoutY="10" text="Start" onAction="#startSimulation"/>
+
+    <!-- Kavşak için çizgiler -->
+    <Line startX="400" startY="0" endX="400" endY="150" stroke="black" strokeWidth="40"/>
+    <Line startX="400" startY="650" endX="400" endY="800" stroke="black" strokeWidth="40"/>
+    <Line startX="0" startY="400" endX="150" endY="400" stroke="black" strokeWidth="40"/>
+    <Line startX="650" startY="400" endX="800" endY="400" stroke="black" strokeWidth="40"/>
 
 </AnchorPane>

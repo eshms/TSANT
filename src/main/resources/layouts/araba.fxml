@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<StackPane xmlns:fx="http://javafx.com/fxml">
+    <Pane prefWidth="60" prefHeight="30">
+        <!-- Araba gövdesi -->
+        <Rectangle x="0" y="10" width="60" height="20" fill="#2e86de" arcWidth="10" arcHeight="10" />
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
+        <!-- Cam üstü -->
+        <Rectangle x="15" y="0" width="30" height="15" fill="#a9cce3" arcWidth="6" arcHeight="6" />
 
-</AnchorPane>
+        <!-- Tekerlekler -->
+        <Circle centerX="10" centerY="32" radius="5" fill="black" />
+        <Circle centerX="50" centerY="32" radius="5" fill="black" />
+    </Pane>
+</StackPane>

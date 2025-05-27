@@ -1,12 +1,15 @@
 package org.example.tsant.Controller;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import org.example.tsant.Model.TrafficLight;
-import static java.awt.Color.*;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.util.Duration;
 
 public class TrafficLightController {
+
+    public enum LightState {
+        RED, YELLOW, GREEN
+    }
 
     @FXML
     private Circle redLight;
@@ -17,43 +20,50 @@ public class TrafficLightController {
     @FXML
     private Circle greenLight;
 
-    @FXML
-    private Label statusLabel;
-
-    private TrafficLight trafficLight;
+    private LightState currentState = LightState.RED;
+    private Timeline timeline;
 
     @FXML
     public void initialize() {
-        trafficLight = new TrafficLight(); // Model nesnesini oluştur
-
-        updateLights(); // Başlangıç durumu
+        switchTo(LightState.RED); // Başlangıç durumu
+        startSimulation();        // Otomatik geçişleri başlat
     }
 
-    public void changeLight() {
-        trafficLight.switchLight(); // Modelde ışığı değiştir
-        updateLights();             // View güncelle
+    public void switchTo(LightState state) {
+        this.currentState = state;
+
+        // Işık durumlarını güncelle
+        redLight.setOpacity(state == LightState.RED ? 1.0 : 0.3);
+        yellowLight.setOpacity(state == LightState.YELLOW ? 1.0 : 0.3);
+        greenLight.setOpacity(state == LightState.GREEN ? 1.0 : 0.3);
     }
 
-    private void updateLights() {
-        switch (trafficLight.getCurrentState()) {
-            case RED -> {
-                redLight.setFill(Color.RED);
-                yellowLight.setFill(Color.GRAY);
-                greenLight.setFill(Color.GRAY);
-                statusLabel.setText("DUR");
-            }
-            case YELLOW -> {
-                redLight.setFill(Color.GRAY);
-                yellowLight.setFill(Color.YELLOW);
-                greenLight.setFill(Color.GRAY);
-                statusLabel.setText("DİKKAT");
-            }
-            case GREEN -> {
-                redLight.setFill(Color.GRAY);
-                yellowLight.setFill(Color.GRAY);
-                greenLight.setFill(Color.LIMEGREEN);
-                statusLabel.setText("GEÇ");
-            }
+    private void startSimulation() {
+        timeline = new Timeline();
+        timeline.setCycleCount(Timeline.INDEFINITE);
+
+        KeyFrame greenPhase = new KeyFrame(Duration.seconds(0), e -> switchTo(LightState.GREEN));
+        KeyFrame yellowAfterGreen = new KeyFrame(Duration.seconds(5), e -> switchTo(LightState.YELLOW));
+        KeyFrame redAfterYellow = new KeyFrame(Duration.seconds(7), e -> switchTo(LightState.RED));
+        KeyFrame greenAgain = new KeyFrame(Duration.seconds(10)); // döngü başa sarar
+
+        timeline.getKeyFrames().addAll(greenPhase, yellowAfterGreen, redAfterYellow, greenAgain);
+        timeline.play();
+    }
+
+    public LightState getCurrentState() {
+        return currentState;
+    }
+
+    public void stopSimulation() {
+        if (timeline != null) {
+            timeline.stop();
+        }
+    }
+
+    public void resumeSimulation() {
+        if (timeline != null) {
+            timeline.play();
         }
     }
 }

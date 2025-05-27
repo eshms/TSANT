@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?xml version="1.0" encoding="UTF-8"?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.layout.AnchorPane?>
 
-</AnchorPane>
+
+<StackPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.tsant.Controller.TrafficLightController">
+    <Pane prefWidth="40" prefHeight="120">
+
+        <!-- Lamba kutusu -->
+        <Rectangle x="0" y="0" width="40" height="120" fill="#2c3e50" arcWidth="10" arcHeight="10" stroke="black" strokeWidth="1"/>
+
+        <!-- Kırmızı ışık -->
+        <Circle fx:id="redLight" centerX="20" centerY="20" radius="10" fill="gray" stroke="black"/>
+
+        <!-- Sarı ışık -->
+        <Circle fx:id="yellowLight" centerX="20" centerY="60" radius="10" fill="gray" stroke="black"/>
+
+        <!-- Yeşil ışık -->
+        <Circle fx:id="greenLight" centerX="20" centerY="100" radius="10" fill="gray" stroke="black"/>
+
+
+
+    </Pane>
+</StackPane>

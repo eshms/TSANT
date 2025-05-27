@@ -1,19 +1,16 @@
-package org.example.tsant;
-
+package org.example.tsant.Controller;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-
     @Override
-    public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/map.fxml"));
-        Scene scene = new Scene(loader.load());
-        stage.setTitle("Traffic Light Control System");
-        stage.setScene(scene);
-        stage.show();
+    public void start(Stage primaryStage) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/simule.fxml"));
+        primaryStage.setTitle("Trafik Simülasyonu");
+        primaryStage.setScene(new Scene(loader.load()));
+        primaryStage.show();
     }
 
     public static void main(String[] args) {
